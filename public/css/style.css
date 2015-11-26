@@ -1,0 +1,45 @@
+/*body {
+  margin: 0 250px 0 250px;
+}*/
+
+.container {
+  max-width: 600px;
+}
+
+header {
+  position:fixed; 
+  left:0px;
+  top:0px;
+  height:60px;
+  width:100%;
+  padding: 0 20px 0 30px;
+  background-color: #fff;
+}
+
+header h1 {
+  text-align: center;
+}
+
+.commentList {
+  margin-bottom: 200px;
+  margin-top: 60px;
+}
+
+/*.commentForm {
+  margin: 20px auto;
+  text-align: center;
+}*/
+
+textarea[type="text"] {
+    height: 100px;
+}
+
+footer {
+  position:fixed; 
+  left:0px;
+  bottom:0px;
+  height:150px;
+  width: 100%;
+  padding: 0 20px 0 30px;
+  background-color: #fff;
+}
