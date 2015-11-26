@@ -11,7 +11,7 @@
 var Comment = React.createClass({
 	render: function() {
 		return (
-			<div className="comment">
+			<div className="comment tk-anonymous-pro">
 				<h2 className="commentId">
 					{this.props.id}
 				</h2>
@@ -91,11 +91,20 @@ var CommentForm = React.createClass({
 	}
 });
 
-// <input type="text" 
-// placeholder="Say something... " 
-// value={this.state.text}
-// onChange={this.handleTextChange} />
-
+var Header = React.createClass({
+	render: function() {
+		return (
+			<header>
+				<div className="container">
+					<div className="title">
+						<h1 className="tk-anonymous-pro"><b>Diary Bot</b></h1>
+					</div>
+					<div className="right">login</div>
+				</div>
+			</header>
+		)
+	}
+});
 
 var App = React.createClass({
 	getCommentsFromServer: function() {
@@ -142,9 +151,7 @@ var App = React.createClass({
 	render: function() {
 		return(
 		<div className="container">
-			<header>
-				<h1>Diary Bot</h1>
-			</header>
+			<Header />
 			<CommentList data={this.state.data}/> {/* pass data to CommentList*/}
 			<footer>
 				<div className="container">
