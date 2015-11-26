@@ -13,7 +13,7 @@ var Comment = React.createClass({
 		return (
 			<div className="comment">
 				<h2 className="commentId">
-					{this.props.key}
+					{this.props.id}
 				</h2>
 				{this.props.children}
 			</div>
@@ -26,11 +26,9 @@ var CommentList = React.createClass({
 
 	componentDidUpdate : function(props, states, context) {
 	  if (this.props.data && props.data && this.props.data.length != props.data.length) {
-	      // var comment_els = docuent.querySelectorAll('.comment');
-	      // var last_comment_el = comment_els.pop();
-	      var last_comment_el = $('.comment').eq(props.data.length - 1).get( 0 );
-	      var pos = this.getPosition(last_comment_el);
-	      window.scrollTo(pos.y,0);
+		var last_comment_el = $('.comment').eq(this.props.data.length - 1).get( 0 );
+		var pos = this.getPosition(last_comment_el);
+		window.scrollTo(0,pos.y);
 	  }
 	},
 	getPosition : function(element) {

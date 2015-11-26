@@ -1,6 +1,6 @@
-/*body {
-  margin: 0 250px 0 250px;
-}*/
+body {
+  background-color: #ccc;
+}
 
 .container {
   max-width: 600px;
@@ -11,9 +11,9 @@ header {
   left:0px;
   top:0px;
   height:60px;
-  width:100%;
-  padding: 0 20px 0 30px;
-  background-color: #fff;
+  width: 100%;
+  padding: 0 20px 80px 20px;
+  background-color: #ccc;
 }
 
 header h1 {
@@ -23,6 +23,12 @@ header h1 {
 .commentList {
   margin-bottom: 200px;
   margin-top: 60px;
+}
+
+.comment {
+  padding: 5px 15px 15px 15px;
+  margin-top: 15px;
+  background-color: #fff;
 }
 
 /*.commentForm {
@@ -41,5 +47,5 @@ footer {
   height:150px;
   width: 100%;
   padding: 0 20px 0 30px;
-  background-color: #fff;
+  background-color: #ccc;
 }
