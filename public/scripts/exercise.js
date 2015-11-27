@@ -172,7 +172,7 @@ var Content = React.createClass({
 	}
 });
 
-var Signin = React.createClass({
+var Login = React.createClass({
 	contextTypes : {
 		userKey : React.PropTypes.any,
 		setUserKey : React.PropTypes.func,
@@ -196,14 +196,14 @@ var Signin = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="signin main">
+			<div className="login main">
 				<div className="new-user-area">
 					<h2>Enter User Key</h2>
 					<p>
 						If you are new, create a new user key here.
 						If you are a returning user, enter your user key here. 
 					</p>
-					<form className="signInForm" onSubmit={this.handleNewKeySubmit}>
+					<form className="logInForm" onSubmit={this.handleNewKeySubmit}>
 						<input type="text" 
 						  placeholder="Create new key " 
 						  value={this.state.userKey}
@@ -248,7 +248,7 @@ var Header = React.createClass({
 					<div className="right">
 						{
 							this.context.userKey == null ?
-							(<Link to="/signin">Login</Link>) :
+							(<Link to="/login">Login</Link>) :
 							(<Link to="/" onClick={this.logout}>Logout</Link>)
 						}
 						
@@ -295,7 +295,7 @@ ReactDOM.render((
 	<Router history={BrowserHistory()}>
 	    <Route path="/" component={App}>
 	      <IndexRoute component={Home} />
-	      <Route path="signin" component={Signin} />
+	      <Route path="login" component={Login} />
 	      <Route path="content" component={Content} />
 	    </Route>
 	</Router>
