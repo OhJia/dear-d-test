@@ -205,7 +205,7 @@ var Login = React.createClass({
 					</p>
 					<form className="logInForm" onSubmit={this.handleNewKeySubmit}>
 						<input type="text" 
-						  placeholder="Create new key " 
+						  placeholder="Your user key " 
 						  value={this.state.userKey}
 				  		  onChange={this.handleNewKeyChange} />
 						<input type="submit" value="Enter" />
