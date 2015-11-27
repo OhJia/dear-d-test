@@ -24,9 +24,9 @@ var Comment = React.createClass({
 	render: function() {
 		return (
 			<div className="comment tk-anonymous-pro">
-				<h2 className="commentId">
-					{this.props.id}
-				</h2>
+				<p className="commentId">
+					{this.props.commentId}
+				</p>
 				{this.props.children}
 			</div>
 		)
@@ -57,7 +57,7 @@ var CommentList = React.createClass({
 	render: function() {
 		var commentNodes = this.props.data.map(function(comment){
 			return (
-				<Comment key={comment.id}>
+				<Comment key={comment.id} commentId={comment.id}>
 					{comment.text}
 				</Comment>
 			);
