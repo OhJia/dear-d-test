@@ -15,16 +15,10 @@ body {
   display: inline-block;
 }
 
-/*header {
-  position:fixed; 
-  top:0px;
-  height:60px;
-  padding: 0 20px 80px 20px;
-  background-color: #fff;
-  border-bottom: 1px solid #ccc;
-  text-align: center;
-  margin: 0 auto;
-}*/
+.main {
+  margin-top: 100px;
+}
+
 header {
   position:fixed; 
   margin: 0 auto;
@@ -47,20 +41,28 @@ header {
   border-radius: 2px;
 }
 
-/*.commentForm {
-  margin: 20px auto;
-  text-align: center;
-}*/
 
 textarea[type="text"] {
     height: 100px;
 }
 
-footer {
+.commentFormArea {
   position:fixed; 
   left:0px;
   bottom:0px;
   height:150px;
   width: 100%;
   background-color: #f3f3f3;
+}
+
+/* sign in page */
+.old-user-area {
+  background-color: #fff;
+  margin-bottom: 60px;
+  padding: 10px 30px 30px 30px;
+}
+
+.new-user-area {
+  background-color: #fff;
+  padding: 10px 30px 30px 30px;
 }

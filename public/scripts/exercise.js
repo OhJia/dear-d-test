@@ -6,7 +6,19 @@
 	  - comment box
 	- footer
 	  - comment forms
+
+App -> home
+App -> secure signin -> generate key -> comment
+App -> secure signin -> comment box
+
 */
+//import { Router, Route, Link } from 'react-router'
+var Route = ReactRouter.Route
+var Link = ReactRouter.Link
+var Router = ReactRouter.Router
+var BrowserHistory = History.createHistory
+var IndexRoute = ReactRouter.IndexRoute
+
 
 var Comment = React.createClass({
 	render: function() {
@@ -91,22 +103,7 @@ var CommentForm = React.createClass({
 	}
 });
 
-var Header = React.createClass({
-	render: function() {
-		return (
-			<header>
-				<div className="container">
-					<div className="title">
-						<h1 className="tk-anonymous-pro"><b>Diary Bot</b></h1>
-					</div>
-					<div className="right">login</div>
-				</div>
-			</header>
-		)
-	}
-});
-
-var App = React.createClass({
+var Content = React.createClass({
 	getCommentsFromServer: function() {
 		$.ajax({
 			url: this.props.url,
@@ -144,28 +141,109 @@ var App = React.createClass({
 	getInitialState: function() {
 		return {data:[]};
 	}, 
+	getDefaultProps : function() {
+		return {pollInterval: 2000};
+	},
 	componentDidMount: function() {
 		this.getCommentsFromServer();
 		setInterval(this.getCommentsFromServer, this.props.pollInterval);
 	},
 	render: function() {
-		return(
-		<div className="container">
-			<Header />
-			<CommentList data={this.state.data}/> {/* pass data to CommentList*/}
-			<footer>
-				<div className="container">
-					<CommentForm onCommentSubmit={this.handleCommentSubmit} />
+		return (
+			<div className="content main">
+				<CommentList data={this.state.data} /> 
+				<div className="commentFormArea">
+					<div className="container">
+						<CommentForm onCommentSubmit={this.handleCommentSubmit} />
+					</div>
 				</div>
-			</footer>
-		</div>
-		);
+			</div>
+		)
+	}
+});
+
+var Signin = React.createClass({
+	render: function() {
+		return (
+			<div className="signin main">
+				<div className="old-user-area"> 
+					<h2>Login</h2>
+					<p>
+						If you already have a key, copy and paste it here. 
+						This will allow you to continue your conversation.
+					</p>
+					<form className="signInForm">
+						<input type="text" 
+						  placeholder="Enter your key " />
+						<input type="submit" value="Enter" />
+					</form>
+				</div>
+				<div className="new-user-area">
+					<h2>New User</h2>
+					<p>
+						If you are new, click here to generate a new key.
+						Don't forget to copy and save the key somewhere safe!
+					</p>
+					<button>New Key</button>
+				</div>
+			</div>
+		)
 	}
 });
 
 
-ReactDOM.render(
- 	<App url="/api/comments" pollInterval={2000} />,
- 	document.getElementById('content')
-);
 
+
+var Home = React.createClass({
+	render: function() {
+		return (
+			<div className="home main">
+				Home
+			</div>
+		)
+	}
+});
+
+var Header = React.createClass({
+	render: function() {
+		return (
+			<header>
+				<div className="container">
+					<div className="title">
+						<h1 className="tk-anonymous-pro"><b>Diary Bot</b></h1>
+					</div>
+					<div className="right"><Link to="/signin">login</Link></div>
+					<div className="right"><Link to="/signin/content">content</Link></div>
+				</div>
+			</header>
+		)
+	}
+});
+
+var App = React.createClass({
+	render: function() {
+		return(
+			<div className="container">
+				<Header /> 
+				{this.props.children}
+			</div>
+		)
+	}
+});
+
+
+ReactDOM.render((
+	<Router history={BrowserHistory()}>
+	    <Route path="/" component={App}>
+	      <IndexRoute component={Home} />
+	      <Route path="signin" component={Signin} />
+	      <Route path="signin/content" component={Content} />
+	    </Route>
+	</Router>
+), document.getElementById('app'));
+
+
+// ReactDOM.render(
+//  	<App url="/api/comments" pollInterval={2000} />,
+//  	document.getElementById('content')
+// );
