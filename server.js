@@ -48,7 +48,7 @@ app.post('/api/comments', function(req, res) {
     // treat Date.now() as unique-enough for our purposes.
     var newComment = {
       id: Date.now(),
-      author: req.body.author,
+      type: req.body.type,
       text: req.body.text,
     };
     comments.push(newComment);

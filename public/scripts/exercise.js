@@ -19,7 +19,7 @@ var Comment = React.createClass({
 		return (
 			<div className="comment tk-anonymous-pro">
 				<p className="commentId">
-					{this.props.commentId}
+					{this.props.commentType}
 				</p>
 				{this.props.children}
 			</div>
@@ -64,7 +64,7 @@ var CommentList = React.createClass({
 	render: function() {
 		var commentNodes = this.props.data.map(function(comment){
 			return (
-				<Comment key={comment.id} commentId={comment.id}>
+				<Comment key={comment.id} commentId={comment.id} commentType={comment.type}>
 					{comment.text}
 				</Comment>
 			);
@@ -139,7 +139,8 @@ var Content = React.createClass({
 	    // comments.type, comments.text 
 
 	    comment.id = Date.now();
-	    comment.author = this.context.userKey;
+	    // comment.author = this.context.userKey;
+	    comment.type = "user";
 	    var newComments = comments.concat([comment]);
 	    this.setState({data: newComments});
 		$.ajax({
