@@ -17,28 +17,27 @@ var IndexRoute = ReactRouter.IndexRoute
 var Comment = React.createClass({
 	render: function() {
 		return (
-			<div className="comment tk-anonymous-pro">
-				<p className="commentId">
-					{this.props.commentType}
-				</p>
-				{this.props.children}
-			</div>
+			this.props.commentType == "user" ?
+			(
+				<div className="comment comment-user tk-anonymous-pro">
+					<p className="commentId">
+						{this.props.commentType}
+					</p>
+					{this.props.children}
+				</div>
+			) :
+			(
+				<div className="comment comment-bot tk-anonymous-pro">
+					<p className="commentId">
+						{this.props.commentType}
+					</p>
+					{this.props.children}
+				</div>
+			)
+			
 		)
 	}
 });
-
-// var Comment = React.createClass({
-// 	render: function() {
-// 		return (
-// 			<div className="comment tk-anonymous-pro">
-// 				<p className="commentId">
-// 					{this.props.commentId}
-// 				</p>
-// 				{this.props.children}
-// 			</div>
-// 		)
-// 	}
-// });
 
 
 var CommentList = React.createClass({
@@ -199,7 +198,7 @@ var Login = React.createClass({
 	},
 
 	getInitialState: function() {
-		return {userKey: null, passcode: null};
+		return {userKey: null, password: null};
 	},
 	getDefaultProps : function() { 
 		return {url:"/login2"}; 
@@ -207,8 +206,8 @@ var Login = React.createClass({
 	handleNewKeyChange: function(e) {
 		this.setState({userKey: e.target.value});
 	},
-	handlePasscodeChange: function(e) {
-		this.setState({passcode: e.target.value});
+	handlePasswordChange: function(e) {
+		this.setState({password: e.target.value});
 	},
 	handleNewKeySubmit: function(e) {
 		e.preventDefault();
@@ -220,7 +219,7 @@ var Login = React.createClass({
 		this.context.history.pushState(null, "/content", {});
 		
 		var userLogin = this.state;		
-		//console.log(userLogin);
+		console.log(userLogin);
 		//ajax POST userKey
 		$.ajax({
 			url: this.props.url,
@@ -229,7 +228,7 @@ var Login = React.createClass({
 			data: userLogin,
 			success: function(data){
 				// this.setState({data:data});
-				console.log("Logged in!!");
+				console.log("Logged in!!", userLogin);
 			}.bind(this),
 			error: function(ehx, status, err) {
 				console.log(this.props.url, status, err.toString());
@@ -251,9 +250,9 @@ var Login = React.createClass({
 						  value={this.state.userKey}
 				  		  onChange={this.handleNewKeyChange} />
 				  		<input type="text" 
-						  placeholder="Passcode" 
+						  placeholder="Password" 
 						  value={this.state.userPasscode}
-				  		  onChange={this.handlePasscodeChange} />
+				  		  onChange={this.handlePasswordChange} />
 						<input type="submit" value="Enter" />
 					</form>
 				</div>

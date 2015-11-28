@@ -37,8 +37,15 @@ header {
 .comment {
   padding: 5px 15px 15px 15px;
   margin-top: 15px;
-  background-color: #fff;
   border-radius: 2px;
+}
+
+.comment-user {
+  background-color: #fff;
+}
+
+.comment-bot {
+  background-color: #ccc;
 }
 
 
